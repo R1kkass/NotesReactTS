@@ -5,9 +5,10 @@ import Modal from "@mui/material/Modal"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import { useSpring, animated } from "@react-spring/web"
-import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined"
+import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
 import { MyContext } from "../../Context"
-import { INotes } from "../../App"
+import { useParams } from "react-router-dom"
+import Select from "../../UI/Select/Select"
 
 interface FadeProps {
     children: React.ReactElement
@@ -65,18 +66,20 @@ const style = {
     p: 4,
 }
 
-export default function AddNote() {
-    const refName = React.useRef<HTMLInputElement>(null)
-    const refText = React.useRef<HTMLInputElement>(null)
+export default function EditTextModal() {
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-    const { addNotes = (text: INotes) => {}, notes = [] } =
+    const { deleteNotes = (id: number) => {}, notes = [] } =
         React.useContext(MyContext)
+    const params = useParams()
+
+    const { editStyle = () => {} } = React.useContext(MyContext)
+
 
     return (
         <div>
-            <CreateOutlinedIcon onClick={handleOpen} />
+            <SortByAlphaIcon onClick={handleOpen} />
             <Modal
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
@@ -93,52 +96,58 @@ export default function AddNote() {
                 <Fade in={open}>
                     <Box sx={style}>
                         <Typography
-                            id="spring-modal-title"
-                            variant="h6"
-                            component="h2"
+                            id="spring-modal-description"
+                            sx={{ mt: 2 }}
                         >
-                            <div
-                                contentEditable="true"
-                                id="text"
-                                ref={refName}
-                                placeholder="Текст записи"
-                            />
-                        </Typography>
-                        <Typography
-                            id="spring-modal-title"
-                            variant="h6"
-                            component="h2"
-                        >
-                            <input ref={refText} />
+                            <div></div>
                         </Typography>
                         <Typography
                             id="spring-modal-description"
                             sx={{ mt: 2 }}
                         >
-                            <Button
-                                onClick={() => {
-                                    let d = new Date()
-                                    addNotes({
-                                        name: refName?.current?.innerHTML || "",
-                                        text: refText?.current?.value || "",
-                                        id: Date.now(),
-                                        data: [
-                                            d.getDay(),
-                                            d.getMonth(),
-                                            d.getFullYear(),
-                                            d.getHours(),
-                                            d.getMinutes(),
-                                        ],
-                                        style:{}
-                                    })
-                                    localStorage.setItem(
-                                        "note",
-                                        JSON.stringify(notes)
-                                    )
+                            <Select
+                                options={[
+                                    { label: "14px" },
+                                    { label: "16px" },
+                                    { label: "18px" },
+                                ]}
+                                label="Размер текста"
+                                onChange={(e: React.ChangeEvent<any>) => {
+                                    editStyle(e?.target?.innerText || "", Number(params?.id) || 0, 'fontSize')
                                 }}
-                            >
-                                Добавить заметку
-                            </Button>
+                            />
+                        </Typography>
+                        <Typography
+                            id="spring-modal-description"
+                            sx={{ mt: 2 }}
+                        >
+                            <Select
+                                options={[
+                                    { label: "Красный" },
+                                    { label: "Синий" },
+                                    { label: "Жёлтый" },
+                                ]}
+                                label="Цвет"
+                                onChange={(e: React.ChangeEvent<any>) => {
+                                    editStyle(e?.target?.innerText || "", Number(params?.id) || 0, 'color')
+                                }}
+                            />
+                        </Typography>
+                        <Typography
+                            id="spring-modal-description"
+                            sx={{ mt: 2 }}
+                        >
+                            <Select
+                                options={[
+                                    { label: "Times New Roman" },
+                                    { label: "Arial" },
+                                    { label: "Calibri" },
+                                ]}
+                                onChange={(e: React.ChangeEvent<any>) => {
+                                    editStyle(e?.target?.innerText || "", Number(params?.id) || 0, 'fontFamily')
+                                }}
+                                label="Шрифт"
+                            />
                         </Typography>
                     </Box>
                 </Fade>

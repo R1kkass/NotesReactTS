@@ -1,11 +1,9 @@
 import ButtonDelete from "../../UI/ButtonDelete/ButtonDelete"
 import "./Header.scss"
-import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined"
-import { TextField } from "@mui/material"
-import SearchIcon from "@mui/icons-material/Search"
 import AddNote from "../AddNote/AddNote"
 import Search from "../Search/Search"
-
+import SortByAlphaIcon from '@mui/icons-material/SortByAlpha';
+import EditTextModal from "../EditeText/EditTextModal";
 const Header = () => {
     return (
         <div className="Header__container">
@@ -16,6 +14,7 @@ const Header = () => {
                 <div className="Header__buttonRight">
                     <div>
                         <AddNote />
+                        <EditTextModal/>
                     </div>
                     <div>
                         <div className="Header__searchs">

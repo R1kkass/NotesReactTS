@@ -22,7 +22,9 @@ const MyTask: FC<ITask> = ({ name, date, text, id }) => {
                         {date[3] < 10 ? "0" + date[3] : date[3]}:
                         {date[4] < 10 ? "0" + date[4] : date[4]}
                     </div>
-                    <div dangerouslySetInnerHTML={{__html: text}} className="LeftBlock__text"/>
+                    <div className="LeftBlock__text">
+                        {text ? text : "Нет дополнительного текста"}
+                    </div>
                 </div>
             </div>
         </NavLink>

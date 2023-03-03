@@ -37,14 +37,14 @@ const Markdown: FC<{ note: INotes[] }> = ({ note }) => {
                     : note[0]?.data[4]}
             </p>
             <textarea
+                style={{...note[0]?.style}}
                 defaultValue={note[0]?.name}
                 value={note[0]?.name}
                 ref={textRef}
                 onChange={() => {
                     editNote(note[0]?.id || 0, textRef?.current?.value || "")
                 }}
-            >
-            </textarea>
+            ></textarea>
         </div>
     )
 }

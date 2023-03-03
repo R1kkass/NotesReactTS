@@ -79,6 +79,9 @@ body{
 
     &__text{
         color: rgb(189, 189, 189);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
     &__taskName{
         text-overflow: ellipsis;

@@ -45,9 +45,11 @@
             position: absolute;
         }
     }
+    div{
+        display: flex;
+    }
 }
 
 .Header__container{
-    // height: 45px;
     width: 100%;
 }
