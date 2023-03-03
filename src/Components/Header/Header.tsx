@@ -4,6 +4,7 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined"
 import { TextField } from "@mui/material"
 import SearchIcon from "@mui/icons-material/Search"
 import AddNote from "../AddNote/AddNote"
+import Search from "../Search/Search"
 
 const Header = () => {
     return (
@@ -18,11 +19,7 @@ const Header = () => {
                     </div>
                     <div>
                         <div className="Header__searchs">
-                            <SearchIcon />
-                            <input
-                                className="Header__search"
-                                placeholder="Поиск"
-                            />
+                           <Search/>
                         </div>
                     </div>
                 </div>

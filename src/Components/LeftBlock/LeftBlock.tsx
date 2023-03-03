@@ -7,11 +7,11 @@ import ButtonDelete from "../../UI/ButtonDelete/ButtonDelete"
 import { MyContext } from "../../Context"
 import { INotes } from "../../App"
 
-const nt:INotes[] =JSON.parse(localStorage.getItem('note') || '[]')
+const nt: INotes[] = JSON.parse(localStorage.getItem("note") || "[]")
 
 const LeftBlock: FC = () => {
-    const { notes = [] } = useContext(MyContext)
-    
+    const { notes = [], noteSearch = [] } = useContext(MyContext)
+
     return (
         <div className="LeftBlock__container">
             <div className="LeftBlock">
@@ -20,15 +20,25 @@ const LeftBlock: FC = () => {
                     <p>Сегодня</p>
                 </div>
                 <div className="LeftBlock__tasks">
-                    {notes?.map((note) => (
-                        <MyTask
-                            id={note?.id}
-                            key={note?.id}
-                            name={note?.name}
-                            date={note?.data}
-                            text={note?.text}
-                        />
-                    ))}
+                    {noteSearch.length
+                        ? noteSearch?.map((note) => (
+                              <MyTask
+                                  id={note?.id}
+                                  key={note?.id}
+                                  name={note?.name}
+                                  date={note?.data}
+                                  text={note?.text}
+                              />
+                          ))
+                        : notes?.map((note) => (
+                              <MyTask
+                                  id={note?.id}
+                                  key={note?.id}
+                                  name={note?.name}
+                                  date={note?.data}
+                                  text={note?.text}
+                              />
+                          ))}
                 </div>
             </div>
         </div>

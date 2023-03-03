@@ -17,7 +17,6 @@ export default function Test() {
     const params = useParams()
     const [note, setNote] = React.useState<INotes[]>([])
     const { notes = [] } = React.useContext(MyContext)
-    console.log(notes[0])
 
     React.useEffect(() => {
         if (params.id) {

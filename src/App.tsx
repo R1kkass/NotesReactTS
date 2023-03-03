@@ -20,6 +20,7 @@ let nt = JSON.parse(localStorage.getItem("note") || "[]")
 
 export default function TextButtons() {
     const [notes, setNotes] = React.useState<INotes[]>(nt)
+    const [noteSearch, setNoteSearch] = React.useState<INotes[]>([])
 
     React.useEffect(() => {
         localStorage.setItem("note", JSON.stringify(notes))
@@ -44,8 +45,16 @@ export default function TextButtons() {
         )
     }
 
+    const searchNote = (text: string)=>{
+        setNoteSearch(notes.filter((key)=>{
+            return key.name.includes(text)
+        }))
+        console.log(noteSearch);
+        
+    }
+
     return (
-        <MyContext.Provider value={{ notes, addNotes, deleteNotes, editNote }}>
+        <MyContext.Provider value={{ notes, noteSearch, addNotes, deleteNotes, editNote, searchNote }}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Test />} />

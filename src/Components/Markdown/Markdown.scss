@@ -1,0 +1,13 @@
+.Text{
+    textarea{
+        background-color: rgb(15, 15, 15);
+        outline: none;
+        border: none;
+        color: white;
+        width: 100%;
+        font-size: 20px;
+        padding-left: 10px;
+        font-family: "Roboto", sans-serif;
+        height: calc(100vh - 90px);
+    }
+}

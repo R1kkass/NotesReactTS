@@ -80,6 +80,11 @@ body{
     &__text{
         color: rgb(189, 189, 189);
     }
+    &__taskName{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 }
 
 .LeftBlock__container{
