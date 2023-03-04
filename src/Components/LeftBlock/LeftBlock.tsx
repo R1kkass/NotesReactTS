@@ -6,20 +6,37 @@ import MyTask from "../../UI/Task/MyTask"
 import ButtonDelete from "../../UI/ButtonDelete/ButtonDelete"
 import { MyContext } from "../../Context"
 import { INotes } from "../../App"
+import { useParams } from "react-router"
 
 const nt: INotes[] = JSON.parse(localStorage.getItem("note") || "[{}]")
 
 const LeftBlock: FC = () => {
-    const { notes = [], noteSearch = [] } = useContext(MyContext)
+    const { notes = [], noteSearch = [], status } = useContext(MyContext)
+    const params = useParams()
+    
+    if(status && params.id){
+        return <></>
+    }
 
     return (
-        <div className="LeftBlock__container">
-            <div className="LeftBlock">
-                <ButtonDelete />
-                <div className="LeftBlock__when">
-                    <p>Сегодня</p>
-                </div>
-                <div className="LeftBlock__tasks">
+        <div
+            className={
+                status ? "LeftBlock__containerBlock" : "LeftBlock__container"
+            }
+        >
+            <div className={"LeftBlock"}>
+                {status ? (
+                    <></>
+                ) : (
+                    <>
+                        <ButtonDelete />
+                        <div className="LeftBlock__when">
+                            <p>Сегодня</p>
+                        </div>
+                    </>
+                )}
+
+                <div className={status ? "LeftBlock__tasksBlock" : "LeftBlock__tasks"}>
                     {Array.isArray(noteSearch)
                         ? noteSearch?.map((note) => (
                               <MyTask

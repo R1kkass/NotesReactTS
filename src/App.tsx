@@ -28,6 +28,7 @@ let nt = JSON.parse(localStorage.getItem("note") || "[]")
 
 export default function TextButtons() {
     const [notes, setNotes] = React.useState<INotes[]>(nt)
+    const [status, setStatus] = React.useState(false)
     const [noteSearch, setNoteSearch] = React.useState<INotes[] | string>("")
 
     React.useEffect(() => {
@@ -73,6 +74,10 @@ export default function TextButtons() {
         )
     }
 
+    const statusSet = (bol: boolean)=>{
+        setStatus(bol)
+    }
+
     return (
         <MyContext.Provider
             value={{
@@ -82,7 +87,9 @@ export default function TextButtons() {
                 deleteNotes,
                 editNote,
                 searchNote,
-                editStyle
+                editStyle,
+                status,
+                statusSet
             }}
         >
             <BrowserRouter>

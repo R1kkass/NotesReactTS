@@ -8,6 +8,7 @@ import { useSpring, animated } from "@react-spring/web"
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
 import { MyContext } from "../../Context"
 import { useParams } from "react-router-dom"
+import "./DeleteModal.scss"
 
 interface FadeProps {
     children: React.ReactElement
@@ -69,7 +70,8 @@ export default function DeleteModal() {
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
-    const { deleteNotes = (id: number) => {}, notes=[] } = React.useContext(MyContext)
+    const { deleteNotes = (id: number) => {}, notes = [] } =
+        React.useContext(MyContext)
     const params = useParams()
 
     return (
@@ -90,21 +92,24 @@ export default function DeleteModal() {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography
-                            id="spring-modal-description"
-                            sx={{ mt: 2 }}
-                        >
-                            <Button onClick={handleClose}>Отмена</Button>
-                            <Button
-                                onClick={() => {
-                                    deleteNotes(Number(params?.id) || 0)
-                                    handleClose()
-                                    
-                                }}
+                        <div className="DeleteModal">
+                            <Typography
+                                id="spring-modal-description"
+                                sx={{ mt: 2 }}
                             >
-                                Удалить
-                            </Button>
-                        </Typography>
+                                <Button onClick={handleClose}>Отмена</Button>
+                                <Button
+                                    variant="outlined"
+                                    color="error"
+                                    onClick={() => {
+                                        deleteNotes(Number(params?.id) || 0)
+                                        handleClose()
+                                    }}
+                                >
+                                    Удалить
+                                </Button>
+                            </Typography>
+                        </div>
                     </Box>
                 </Fade>
             </Modal>

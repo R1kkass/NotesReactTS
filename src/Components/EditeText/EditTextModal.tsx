@@ -9,6 +9,7 @@ import SortByAlphaIcon from "@mui/icons-material/SortByAlpha"
 import { MyContext } from "../../Context"
 import { useParams } from "react-router-dom"
 import Select from "../../UI/Select/Select"
+import './EditTextModal.scss'
 
 interface FadeProps {
     children: React.ReactElement
@@ -76,7 +77,6 @@ export default function EditTextModal() {
 
     const { editStyle = () => {} } = React.useContext(MyContext)
 
-
     return (
         <div>
             <SortByAlphaIcon onClick={handleOpen} />
@@ -95,60 +95,79 @@ export default function EditTextModal() {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography
-                            id="spring-modal-description"
-                            sx={{ mt: 2 }}
-                        >
-                            <div></div>
-                        </Typography>
-                        <Typography
-                            id="spring-modal-description"
-                            sx={{ mt: 2 }}
-                        >
-                            <Select
-                                options={[
-                                    { label: "14px" },
-                                    { label: "16px" },
-                                    { label: "18px" },
-                                ]}
-                                label="Размер текста"
-                                onChange={(e: React.ChangeEvent<any>) => {
-                                    editStyle(e?.target?.innerText || "", Number(params?.id) || 0, 'fontSize')
-                                }}
-                            />
-                        </Typography>
-                        <Typography
-                            id="spring-modal-description"
-                            sx={{ mt: 2 }}
-                        >
-                            <Select
-                                options={[
-                                    { label: "Красный" },
-                                    { label: "Синий" },
-                                    { label: "Жёлтый" },
-                                ]}
-                                label="Цвет"
-                                onChange={(e: React.ChangeEvent<any>) => {
-                                    editStyle(e?.target?.innerText || "", Number(params?.id) || 0, 'color')
-                                }}
-                            />
-                        </Typography>
-                        <Typography
-                            id="spring-modal-description"
-                            sx={{ mt: 2 }}
-                        >
-                            <Select
-                                options={[
-                                    { label: "Times New Roman" },
-                                    { label: "Arial" },
-                                    { label: "Calibri" },
-                                ]}
-                                onChange={(e: React.ChangeEvent<any>) => {
-                                    editStyle(e?.target?.innerText || "", Number(params?.id) || 0, 'fontFamily')
-                                }}
-                                label="Шрифт"
-                            />
-                        </Typography>
+                        <div className="EditTextModal">
+                            <Typography
+                                id="spring-modal-description"
+                                sx={{ mt: 2 }}
+                            >
+                                <div></div>
+                            </Typography>
+                            <Typography
+                                id="spring-modal-description"
+                                sx={{ mt: 2 }}
+                            >
+                                <Select
+                                    options={[
+                                        { label: "14px" },
+                                        { label: "16px" },
+                                        { label: "18px" },
+                                        { label: "20px" },
+                                        { label: "22px" },
+                                        { label: "24px" },
+                                    ]}
+                                    label="Размер текста"
+                                    onChange={(e: React.ChangeEvent<any>) => {
+                                        editStyle(
+                                            e?.target?.innerText || "",
+                                            Number(params?.id) || 0,
+                                            "fontSize"
+                                        )
+                                    }}
+                                />
+                            </Typography>
+                            <Typography
+                                id="spring-modal-description"
+                                sx={{ mt: 2 }}
+                            >
+                                <Select
+                                    options={[
+                                        { label: "Red" },
+                                        { label: "Blue" },
+                                        { label: "Yellow" },
+                                        { label: "White" },
+                                        { label: "Black" },
+                                    ]}
+                                    label="Цвет"
+                                    onChange={(e: React.ChangeEvent<any>) => {
+                                        editStyle(
+                                            e?.target?.innerText || "",
+                                            Number(params?.id) || 0,
+                                            "color"
+                                        )
+                                    }}
+                                />
+                            </Typography>
+                            <Typography
+                                id="spring-modal-description"
+                                sx={{ mt: 2 }}
+                            >
+                                <Select
+                                    options={[
+                                        { label: "Times New Roman" },
+                                        { label: "Arial" },
+                                        { label: "Calibri" },
+                                    ]}
+                                    onChange={(e: React.ChangeEvent<any>) => {
+                                        editStyle(
+                                            e?.target?.innerText || "",
+                                            Number(params?.id) || 0,
+                                            "fontFamily"
+                                        )
+                                    }}
+                                    label="Шрифт"
+                                />
+                            </Typography>
+                        </div>
                     </Box>
                 </Fade>
             </Modal>

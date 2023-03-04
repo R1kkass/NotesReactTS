@@ -8,6 +8,7 @@ import { useSpring, animated } from "@react-spring/web"
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined"
 import { MyContext } from "../../Context"
 import { INotes } from "../../App"
+import "./AddNote.scss"
 
 interface FadeProps {
     children: React.ReactElement
@@ -66,13 +67,37 @@ const style = {
 }
 
 export default function AddNote() {
-    const refName = React.useRef<HTMLInputElement>(null)
+    const refName = React.useRef<HTMLTextAreaElement>(null)
     const refText = React.useRef<HTMLInputElement>(null)
     const [open, setOpen] = React.useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
     const { addNotes = (text: INotes) => {}, notes = [] } =
         React.useContext(MyContext)
+    const [err, setErr] = React.useState("")
+
+    function add() {
+        let d = new Date()
+        if (!refName?.current?.value) {
+            setErr("Поле пустое")
+        } else {
+            setErr("")
+            addNotes({
+                name: refName?.current?.value || "",
+                text: refText?.current?.value || "",
+                id: Date.now(),
+                data: [
+                    d.getDay(),
+                    d.getMonth(),
+                    d.getFullYear(),
+                    d.getHours(),
+                    d.getMinutes(),
+                ],
+                style: {},
+            })
+            localStorage.setItem("note", JSON.stringify(notes))
+        }
+    }
 
     return (
         <div>
@@ -92,54 +117,35 @@ export default function AddNote() {
             >
                 <Fade in={open}>
                     <Box sx={style}>
-                        <Typography
-                            id="spring-modal-title"
-                            variant="h6"
-                            component="h2"
-                        >
-                            <div
-                                contentEditable="true"
-                                id="text"
-                                ref={refName}
-                                placeholder="Текст записи"
-                            />
-                        </Typography>
-                        <Typography
-                            id="spring-modal-title"
-                            variant="h6"
-                            component="h2"
-                        >
-                            <input ref={refText} />
-                        </Typography>
-                        <Typography
-                            id="spring-modal-description"
-                            sx={{ mt: 2 }}
-                        >
-                            <Button
-                                onClick={() => {
-                                    let d = new Date()
-                                    addNotes({
-                                        name: refName?.current?.innerHTML || "",
-                                        text: refText?.current?.value || "",
-                                        id: Date.now(),
-                                        data: [
-                                            d.getDay(),
-                                            d.getMonth(),
-                                            d.getFullYear(),
-                                            d.getHours(),
-                                            d.getMinutes(),
-                                        ],
-                                        style:{}
-                                    })
-                                    localStorage.setItem(
-                                        "note",
-                                        JSON.stringify(notes)
-                                    )
-                                }}
+                        <div className="AddNote">
+                            <Typography
+                                id="spring-modal-title"
+                                variant="h6"
+                                component="h2"
                             >
-                                Добавить заметку
-                            </Button>
-                        </Typography>
+                                <textarea
+                                    ref={refName}
+                                    placeholder="Текст записи"
+                                />
+                            </Typography>
+                            <Typography
+                                id="spring-modal-title"
+                                variant="h6"
+                                component="h2"
+                            >
+                                <input
+                                    ref={refText}
+                                    placeholder="Дополнительный текст"
+                                />
+                            </Typography>
+                            <Typography
+                                id="spring-modal-description"
+                                sx={{ mt: 2 }}
+                            >
+                                <Button onClick={add}>Добавить заметку</Button>
+                                <p>{err}</p>
+                            </Typography>
+                        </div>
                     </Box>
                 </Fade>
             </Modal>

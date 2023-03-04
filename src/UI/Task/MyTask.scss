@@ -1,0 +1,17 @@
+
+
+.LeftBlock__containerBlock{
+    .LeftBlock{
+        // display: flex;
+        // width: 100%;
+        // flex-wrap: wrap;
+        // flex-direction: row;
+        // background-color: rgb(15, 15, 15);
+        &__taskBlock{
+            width: 300px;
+            height: 300px;
+            border-radius: 2px;
+            border: solid gray 2px;
+        }
+    
+}}

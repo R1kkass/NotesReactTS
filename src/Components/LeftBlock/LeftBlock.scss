@@ -16,92 +16,155 @@ body{
     box-sizing: border-box;
 }
  
-.LeftBlock{
-    position: fixed;
-    overflow-y: auto;
-    z-index: 2;
-    width: 300px;
-    background-color: rgb(53, 53, 53);
-    height: 100vh;
-    padding: 5px;
-    
-    &__button{
-        display: flex;
-        justify-content: space-between;
-        
-    } 
-    &__when{
-        color: white;
-        padding: 5px;
-        border-bottom: solid 2px rgb(189, 189, 189);
-        margin-bottom: 5px;
-    }
-    svg{
-        height: 30px;
-        width: 30px;
-        path{
-           
-            fill: rgb(189, 189, 189);
-        }
-        &:hover{
-            background-color: rgb(75, 75, 75);
-            border-radius: 10px;
-        }
-    }
-    &__tasks{
-        color: white;
-        overflow: hidden;
 
+
+.LeftBlock__container{
+    width: 300px;
+    .LeftBlock{
+        position: fixed;
+        top: 0;
+        overflow-y: auto;
+        z-index: 2;
+        width: 300px;
+        background-color: rgb(53, 53, 53);
+        height: 100vh;
+        padding: 5px;
+        
+        &__button{
+            display: flex;
+            justify-content: space-between;
+            
+        } 
+        &__when{
+            color: white;
+            padding: 5px;
+            border-bottom: solid 2px rgb(189, 189, 189);
+            margin-bottom: 5px;
+        }
+        svg{
+            height: 30px;
+            width: 30px;
+            path{
+               
+                fill: rgb(189, 189, 189);
+            }
+            &:hover{
+                background-color: rgb(75, 75, 75);
+                border-radius: 10px;
+            }
+        }
+        &__tasks{
+            color: white;
+            overflow: hidden;
+    
+        }
+        &__task{
+            
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin-top: 3px;
+            cursor: pointer;
+            border-bottom: 1px solid;
+            
+            &:hover{
+                border-radius: 10px;
+                border-bottom: none;
+                margin-bottom: 1px;
+                background-color: rgb(87, 87, 87);
+                border-bottom: none;
+            }
+        }
+        &__lower{
+            display: flex;
+            justify-content: space-between;
+        }
+        &__date,&__text{
+            font-size: 12px;
+        }
+    
+        &__text{
+            color: rgb(189, 189, 189);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        &__taskName{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
     }
-    &__task{
-        
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        margin-top: 3px;
-        cursor: pointer;
-        border-bottom: 1px solid;
-        
-        &:hover{
+    .Task{
+        div{
             border-radius: 10px;
             border-bottom: none;
             margin-bottom: 1px;
             background-color: rgb(87, 87, 87);
+        
         }
-    }
-    &__lower{
-        display: flex;
-        justify-content: space-between;
-    }
-    &__date,&__text{
-        font-size: 12px;
-    }
-
-    &__text{
-        color: rgb(189, 189, 189);
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-    &__taskName{
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-}
-
-.LeftBlock__container{
-    width: 300px;
-    height: 100vh;
-}
-
-.Task{
-    div{
-        border-radius: 10px;
-        border-bottom: none;
-        margin-bottom: 1px;
-        background-color: rgb(87, 87, 87);
     
     }
-
 }
+
+
+
+
+.LeftBlock__containerBlock{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .LeftBlock__tasksBlock{
+        display: flex;
+        width: 100%;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        overflow: hidden;
+        .LeftBlock__taskBlock{
+
+            overflow: hidden;
+            margin-top: 20px;
+            border-radius: 20px;
+            width: 400px;
+            height: 300px;
+            &:hover{
+                border: solid 2px rgb(148, 133, 1)
+            }
+        }
+    }
+    .LeftBlock{
+        display: flex;
+        width: 90%;
+        margin: 0 auto;
+        &__taskBlock{
+            display: flex;
+        }
+        &__dateBlock{
+            font-size: 14px;
+            color: rgb(189, 189, 189);
+        }
+        &__taskNameBlock{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        &__taskName{
+            
+            padding: 5px 0 0 5px;
+        }
+    }
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 400px;
+        height: 300px;
+    }
+    
+}
+
+

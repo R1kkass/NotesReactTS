@@ -1,6 +1,9 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { Link, NavLink } from "react-router-dom"
 import { useRef, useEffect } from "react"
+import { MyContext } from "../../Context"
+import "./MyTask.scss"
+
 interface ITask {
     name: string
     date: Array<number>
@@ -10,6 +13,27 @@ interface ITask {
 
 const MyTask: FC<ITask> = ({ name, date, text, id }) => {
     const refText = useRef<HTMLDivElement>(null)
+    const { status } = useContext(MyContext)
+    console.log(status)
+
+    if (status) {
+        return (
+            <NavLink
+                to={`/${id}`}
+                className={({ isActive }) => (isActive ? "Task" : undefined)}
+            >
+                <div className="LeftBlock__taskBlock">
+                    <div className="LeftBlock__taskName">{name}</div>
+                </div>
+                <div className="LeftBlock__taskNameBlock">{name}</div>
+                <div className="LeftBlock__dateBlock">
+                    {date[3] < 10 ? "0" + date[3] : date[3]}:
+                    {date[4] < 10 ? "0" + date[4] : date[4]}
+                </div>
+            </NavLink>
+        )
+    }
+
     return (
         <NavLink
             to={`/${id}`}

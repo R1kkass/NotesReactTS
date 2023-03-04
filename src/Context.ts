@@ -16,7 +16,9 @@ interface IContext{
     deleteNotes?: (id: number)=>void,
     editNote?: (id: number, text: string)=>void,
     searchNote?: (text: string)=>void, 
-    editStyle?: (text:string, id: number, type: TStyle)=>void
+    editStyle?: (text:string, id: number, type: TStyle)=>void,
+    status?: boolean,
+    statusSet?:(bol: boolean)=>void
 }
 
 export const MyContext = React.createContext<IContext>({});
