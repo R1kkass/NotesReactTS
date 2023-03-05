@@ -14,8 +14,6 @@ interface ITask {
 const MyTask: FC<ITask> = ({ name, date, text, id }) => {
     const refText = useRef<HTMLDivElement>(null)
     const { status } = useContext(MyContext)
-    console.log(status)
-
     if (status) {
         return (
             <NavLink
