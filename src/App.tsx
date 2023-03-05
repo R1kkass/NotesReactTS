@@ -4,7 +4,7 @@ import Stack from "@mui/material/Stack"
 import LeftBlock from "./Components/LeftBlock/LeftBlock"
 import Header from "./Components/Header/Header"
 import "./Styles/Global.scss"
-import { BrowserRouter, HashRouter } from "react-router-dom"
+import { BrowserRouter, HashRouter, Link } from "react-router-dom"
 import { Route, Routes } from "react-router-dom"
 import Test from "./Test"
 import { MyContext, TStyles } from "./Context"
@@ -92,13 +92,13 @@ export default function TextButtons() {
                 statusSet
             }}
         >
-            <BrowserRouter>
+            <HashRouter>
                 <Routes>
                     <Route path="/" element={<Test />} />
                     <Route path="/:id" element={<Test />} />
                     <Route path="*" element={<h2>404</h2>} />
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </MyContext.Provider>
     )
 }

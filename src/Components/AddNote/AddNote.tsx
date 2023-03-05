@@ -92,7 +92,7 @@ export default function AddNote() {
                     d.getFullYear(),
                     d.getHours(),
                     d.getMinutes(),
-                ],
+                ], 
                 style: {},
             })
             localStorage.setItem("note", JSON.stringify(notes))
